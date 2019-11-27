@@ -1,0 +1,41 @@
+.data
+	# Variaveis do programa
+abertura: .asciiz "\n ======= Soma em Assembly ========\n"
+n1:   .asciiz "\nDigite o primeiro numero: "
+n2:   .asciiz "\nDigite o segundo numero:  "
+soma: .asciiz "\nA soma dos dois numeros e: "
+	
+	.text
+	# Imprimi a abertura
+main:  addi $v0,$zero,4
+	la $a0,abertura
+	syscall
+
+	# Imprimi e l꠯ primeiro numero
+	addi $v0,$zero,4
+	la $a0,n1
+	syscall
+	addi $v0,$zero,5
+	syscall
+	add $s0,$zero,$v0 #n1
+
+	# Imprimi e l꠯ segundo numero
+	addi $v0,$zero,4
+	la $a0,n2
+	syscall
+	addi $v0,$zero,5
+	syscall
+	add $s1,$zero,$v0
+	
+	#Imprimi mensagem SOMA
+	addi $v0,$zero,4
+	la $a0,soma
+	syscall
+
+	# Soma dos dois numeros e imprimir o resultadodos dois numeros
+	add $t0,$s0,$s1
+	addi $v0,$zero,1
+	add $a0,$zero,$t0
+	syscall
+	
+	jr $ra
